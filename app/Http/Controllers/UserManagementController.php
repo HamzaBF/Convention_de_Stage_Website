@@ -29,29 +29,32 @@ class UserManagementController extends Controller
 
      public function display_stagiaire()
      {
-         $users = User::all();
+         $i = 0;
+         $users = User::latest()->paginate(12);
          $conventions = Convention::all();
  
-         return view('users.categorie.stagiaire', compact('users','conventions'));
+         return view('users.categorie.stagiaire', compact('users','conventions','i'));
      }
 
      // display all users
 
      public function display_encadrant()
      {
-         $users = User::all();
+        $i = 0;
+        $users = User::latest()->paginate(12);
          $conventions = Convention::all();
  
-         return view('users.categorie.Encadrant', compact('users'));
+         return view('users.categorie.Encadrant', compact('users','i'));
      }
 
      // display all users
 
      public function display_RH()
      {
-         $users = User::all();
+        $i = 0;
+        $users = User::latest()->paginate(12);
  
-         return view('users.categorie.RH', compact('users'));
+         return view('users.categorie.RH', compact('users','i'));
      }
 
      // edit function
@@ -77,7 +80,7 @@ class UserManagementController extends Controller
             $user->role = $request->get('role');
             $user->save();
 
-            return redirect('/users')->with('success', 'User updated!');
+            return redirect('/users')->with('success', "L'utilisateur est mise à jour !");
         }
 
     // Create function
@@ -99,7 +102,7 @@ class UserManagementController extends Controller
 
         ]);
         $user->save();
-        return redirect('/users')->with('success', 'Contact saved!');
+        return redirect('/users')->with('success', "l'utilisateur est enregistré !");
     }
 
     // Destroy function
@@ -109,7 +112,7 @@ class UserManagementController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect('/users')->with('success', 'Users deleted!');
+        return redirect('/users')->with('success', "l'utilisateur est supprimé !");
     }
 
  

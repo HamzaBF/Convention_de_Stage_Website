@@ -15,7 +15,7 @@ class CreateConventionsTable extends Migration
     {
         Schema::create('conventions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->string('Name')->nullable();
             $table->date('Date')->nullable();
             $table->string('Lieu_De_Naissance')->nullable();
@@ -26,8 +26,11 @@ class CreateConventionsTable extends Migration
             $table->string('Lieu_De_Stage')->nullable();
             $table->string('Tuteur');
             $table->string('departement');
-            $table->string('RIB');
+            $table->string('Remunire');
+            $table->string('RIB')->nullable();
+            $table->integer('Indemnite')->nullable();
             $table->string('Sujet')->nullable();
+            $table->string('DR')->nullable();
             $table->string('date_debut')->nullable();
             $table->string('date_fin')->nullable();
             $table->timestamps();

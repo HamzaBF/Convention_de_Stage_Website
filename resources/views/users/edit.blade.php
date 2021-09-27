@@ -1,10 +1,11 @@
-@extends('admin.dashboard')
+@extends('RH.dashboard')
+
 
 @section('users')
 
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Update a contact</h1>
+        <h1 class="display-3">Mettre à jour un utilisateur</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -21,19 +22,19 @@
             @csrf
             
             <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" name="name" value={{ $user->name }} />
+                <label for="name">Nom Et Prénom:</label>
+                <input type="text" class="form-control" name="name" value="{{ $user->name }}" />
             </div>
 
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" class="form-control" name="email" value={{ $user->email }} />
+                <input type="text" class="form-control" name="email" value="{{ $user->email }}" />
             </div>
             
             <div class="form-group">
                 <select class="form-control" id="role" name="role" tabindex="2" required>
-                    <option selected>Select Role</option>
+                    <option selected>sélectionner le rôle</option>
                     <option value="admin">Admin</option>
                     <option value="encadrant">Encadrant</option>
                     <option value="RH">RH</option>
@@ -41,7 +42,7 @@
                   </select>
             </div>
             
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
         
         </form>
     </div>

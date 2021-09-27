@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.RH.master')
 
 @section('title')
     Dashboard | Admin Panel
@@ -11,9 +11,6 @@
         <h4 class="page-title">Dashboard</h4>
         <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
           <ul class="quick-links ml-auto">
-            <li><a href="#">Settings</a></li>
-            <li><a href="{{ route('users.index') }}">Users</a></li>
-            <li><a href="#">Watchlist</a></li>
           </ul>
         </div>
       </div>
@@ -22,5 +19,10 @@
     <div class="content-wrapper">
       @yield('users')
   </div>
+
+  <div class="content-wrapper">
+    @yield('profile')
+</div>
+
 </div>
 @endsection

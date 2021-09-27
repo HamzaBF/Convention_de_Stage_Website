@@ -4,12 +4,12 @@
 
 <div class="row ">
     <div class="col-sm-12">
-        <h3 class="text-center mb-4">Conventions Management</h3>    
+        <h3 class="text-center mb-4">Gestion des conventions de stage</h3>    
       <table class="table table-striped table-hover ">
         <thead class="thead-primary">
             <tr>
               <td>ID</td>
-              <td>Name</td>
+              <td>Nom et Prénom</td>
               <td>Lieu De Naissance</td>
               <td>Etablissement</td>
 

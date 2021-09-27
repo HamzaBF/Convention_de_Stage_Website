@@ -42,8 +42,8 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function convention()
+    public function conventions()
     {
-        return $this->hasOne(Convention::class);
+        return $this->hasMany(Convention::class);
     }
 }

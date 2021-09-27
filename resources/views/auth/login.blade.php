@@ -45,6 +45,20 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group mt-3 d-flex justify-content-center">
+
+                               {!! NoCaptcha::renderJs() !!}
+                               {!! NoCaptcha::display() !!}
+
+                            </div>
+
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block d-flex justify-content-center">
+                                    <strong> Please verify that you are not a robot ! </strong>
+                                </span>
+                             @endif
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary submit-btn btn-block">
                                     {{ __('Login') }}

@@ -41,9 +41,11 @@ class DashboardController extends Controller
                   ]);
       
                   $convention = Convention::find($id);
+                  $convention->Tuteur = $request->input('tuteur');
                   $convention->Sujet =  $request->get('sujet');
                   $convention->date_debut = $request->get('Date_Debut');
                   $convention->date_fin = $request->get('Date_Fin');
+                  $convention->DR = $request->get('DR');
                   $convention->save();
       
                   return redirect('/encadrant')->with('success', 'Convention Updated');

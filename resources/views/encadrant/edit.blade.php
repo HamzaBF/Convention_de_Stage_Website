@@ -71,6 +71,12 @@
             <input type="text" name="sujet" class="form-control" id="sujet" placeholder="Sujet de stage" value="{{ $convention->Sujet}}">
           </div>
 
+          {{-- Numéro du demande de recrutement --}}
+          <div class="form-group">
+            <label for="dr">Numéro du demande de recrutement</label>
+            <input type="text" name="DR" class="form-control" id="dr" placeholder="Numéro du demande de recrutement" value="{{ $convention->DR}}">
+          </div>
+
           <div class="form-group">
             <label for="datedebut">Date début de stage</label>
             <input name="Date_Debut" type="date" class="form-control" id="datedebut" placeholder="Date début de stage" value="{{ $convention->date_debut }}">

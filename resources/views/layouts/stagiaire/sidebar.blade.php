@@ -3,7 +3,7 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="profile-image">
-                    <img class="img-xs rounded-circle" src="assets/images/faces/face.jpg" alt="profile image">
+                    <img class="img-xs rounded-circle" src="{{ asset('assets/images/faces/face.jpg') }}" alt="profile image">
                     <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
@@ -19,47 +19,24 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        {{-- <li class="nav-item">
+        
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#user-links" aria-expanded="false"
                 aria-controls="user-links">
                 <i class="menu-icon typcn typcn-coffee"></i>
-                <span class="menu-title">Users</span>
+                <span class="menu-title">Convention de stage</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="user-links">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">My Users</a>
+                        <a class="nav-link" href="{{ route('conventions.index')}}">Nos Conventions</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/dropdowns.html">Add New User</a>
-                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="">Add New Convention</a>
+                    </li> --}}
                 </ul>
             </div>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#product-links" aria-expanded="false"
-                aria-controls="product-links">
-                <i class="menu-icon typcn typcn-coffee"></i>
-                <span class="menu-title">Products</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="product-links">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">My Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/dropdowns.html">Add New Product</a>
-                    </li>
-                </ul>
-            </div>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="pages/icons/font-awesome.html">
-                <i class="menu-icon typcn typcn-user-outline"></i>
-                <span class="menu-title">Settings</span>
-            </a>
-        </li> --}}
+        </li>
     </ul>
 </nav>

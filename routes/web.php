@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers;
+use App\Http\Controllers\ImportController;
 use App\Models\Convention;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -37,12 +38,30 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth','verified','role:stagiaire'])->group(function() {
     Route::resource('/conventions', App\Http\Controllers\ConventionController::class, [
         'only' => [
-            'index', 'store','create'
+            'index', 'store','create','show'
         ]
     ]);
 
 });
 
+// Import encadrants route
+Route::middleware(['auth','verified','role:admin'])->group(function() {
+
+    Route::get('file-import', [importController::class, 'fileImportView']);
+    Route::post('file-import', [importController::class, 'fileImport'])->name('file-import');
+
+});
+
+Route::middleware ('auth', 'verified')->group (function () {
+    Route::resource ('profile',  App\Http\Controllers\ProfileController::class, [
+        'only' => ['edit', 'update', 'show']
+    ]);
+    
+});
+
+
+
+Route::view('test','pdf');
 
 
 
@@ -57,10 +76,11 @@ Route::middleware(['auth','verified'])->group(function () {
       
       Route::resource('/convention', App\Http\Controllers\ConventionManagementController::class, [
         'only' => [
-            'index','show'
+            'index','show','edit','update'
         ]
         ]);
       Route::get('/downloadPDF/{id}', [App\Http\Controllers\ConventionManagementController::class, 'downloadPDF'])->name('print');
+      Route::get('RIBs/{id}/download', [App\Http\Controllers\ConventionManagementController::class, 'download'])->name('rib.download');
 
 
 

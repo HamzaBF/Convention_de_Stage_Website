@@ -79,6 +79,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['string', 'max:255'],
+            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
@@ -91,10 +92,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
+       
+        
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            
         ]);
 
         $encadrant = Employees::where('email',$data['email'])->first();

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'MAScIR'),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,10 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
+
 
 
         /*
@@ -233,6 +237,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+
         // 'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],

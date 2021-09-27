@@ -3,7 +3,7 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="profile-image">
-                    <img class="img-xs rounded-circle" src="assets/images/faces/face.jpg" alt="profile image">
+                    <img class="img-xs rounded-circle" src="{{ asset('assets/images/faces/face.jpg') }}" alt="profile image">
                     <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">
@@ -14,7 +14,7 @@
         </li>
         <li class="nav-item nav-category">Main Menu</li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('RH') }}">
+            <a class="nav-link" href="">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -41,7 +41,7 @@
                         <a class="nav-link" href="{{ route('RHs') }}">RH</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.create') }}">Add New User</a>
+                        <a class="nav-link" href="{{ route('users.create') }}">Ajouter un nouveau utilisateur</a>
                     </li>
                 </ul>
             </div>

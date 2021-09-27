@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
+
 class ConventionController extends Controller
 {
     /**
@@ -21,13 +22,10 @@ class ConventionController extends Controller
     {
         //
         // paginate the authorized user's tasks with 5 per page
-        $user = User::find(Auth()->id());
-        $convention = Convention::where('Name',$user->name)->first();
 
-        // return task index view with paginated tasks
-        return view('convention.index', [
-            'convention' => $convention
-        ]);
+        $conventions = Convention::latest()->paginate(7);
+ 
+         return view('convention.index', compact('conventions'));
     }
 
     /**
@@ -55,15 +53,16 @@ class ConventionController extends Controller
 
         $user = User::find(Auth()->id());
         $tuteur = Employees::where('Name',$request->input('tuteur'))->first();
+        $remunire = $request->input('Remunire');
         //
-        if (Convention::where('Name',$user->name)->exists()) {
-            // user found
-            $request->session()->flash('status','Convention déja crée');
+        // if (Convention::where('Name',$user->name)->exists()) {
+        //     // user found
+        //     $request->session()->flash('status','votre Convention de stage déjà crée');
 
-            return redirect()->route('conventions.index'); 
-         }
+        //     return redirect()->route('conventions.index'); 
+        //  }
 
-         if($request->hasFile('rib')){
+         if($remunire=='yes'){
 
             //Storage::delete('/public/avatars/'.$user->avatar);
 
@@ -90,6 +89,7 @@ class ConventionController extends Controller
             $convention->departement = $request->input('Departement');
             $convention->CIN = $request->input('cin');
             $convention->Tuteur = $request->input('tuteur');
+            $convention->Remunire = $request->input('Remunire');
 
             $convention->RIB = $fileNameToStore;
 
@@ -97,19 +97,50 @@ class ConventionController extends Controller
 
             $data = array(
                 'name'      =>  $request->input('Name'),
-                'message'   =>   "Bonjour,
-                                Merci de compléter ma convention de stage.Et Merci.
-                                Cordialement"
+                'message'   =>   "Merci de compléter ma convention de stage.Et Merci."
             );
 
             Mail::to($tuteur->email)->send(new SendMail($data));
 
             
 
-            $request->session()->flash('status','Convention was created');
+            $request->session()->flash('status','Votre convention de stage a été crée');
 
             return redirect()->route('conventions.index'); 
 
+
+        }
+        // si le stagiaire n'est pas rémuniré
+        else {
+
+            $convention = new Convention();
+            $convention->user_id = Auth()->id();
+            $convention->Name = $request->input('Name');
+            $convention->Date = $request->input('Date_Naissance');
+            $convention->Lieu_De_Naissance = $request->input('Lieu_Naissance');
+            $convention->adress = $request->input('Adress');
+            $convention->Etablissement = $request->input('Etablissement');
+            $convention->Formation = $request->input('Formation');
+            $convention->Lieu_De_Stage = $request->input('Lieu_Stage');
+            $convention->departement = $request->input('Departement');
+            $convention->CIN = $request->input('cin');
+            $convention->Tuteur = $request->input('tuteur');
+            $convention->Remunire = $request->input('Remunire');
+
+            $convention->save();
+
+            $data = array(
+                'name'      =>  $request->input('Name'),
+                'message'   =>   "Merci de compléter ma convention de stage.Et Merci."
+            );
+
+            Mail::to($tuteur->email)->send(new SendMail($data));
+
+            
+
+            $request->session()->flash('status','Votre convention de stage a été crée.');
+
+            return redirect()->route('conventions.index');
 
         }
 
@@ -125,6 +156,10 @@ class ConventionController extends Controller
     public function show($id)
     {
         //
+        $convention = Convention::find($id);
+
+        return view('convention.show', compact('convention'));
+
     }
 
     /**

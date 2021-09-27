@@ -48,6 +48,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js" type="text/javascript"></script>
+    
+    <script>
+        $("#remunire").change(function() {
+        if ($(this).val() == "yes") {
+            $('#ribdiv').show();
+            $('#rib').attr('required', '');
+            $('#rib').attr('data-error', 'This field is required.');
+        } else {
+            $('#ribdiv').hide();
+            $('#rib').removeAttr('required');
+            $('#rib').removeAttr('data-error');
+        }  
+        });
+        $("#remunire").trigger("change");
+    </script>
+    
     @yield('scripts')
 </body>
 

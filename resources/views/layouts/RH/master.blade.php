@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/demo_1/style.css') }}">
+
+
 </head>
 <body>
     <div class="container-scroller">
@@ -48,6 +50,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js" type="text/javascript"></script>
+    <script>
+        $("#remunire").change(function() {
+        if ($(this).val() == "yes") {
+            $('#ribdiv').show();
+            $('#rib').attr('required', '');
+            $('#rib').attr('data-error', 'This field is required.');
+            $('#Indemnitediv').show();
+            $('#prix').attr('required', '');
+            $('#prix').attr('data-error', 'This field is required.');
+        } else {
+            $('#ribdiv').hide();
+            $('#rib').removeAttr('required');
+            $('#rib').removeAttr('data-error');
+            $('#Indemnitediv').hide();
+            $('#prix').removeAttr('required');
+            $('#prix').removeAttr('data-error');
+        }  
+        });
+        $("#remunire").trigger("change");
+    </script>
     @yield('scripts')
 </body>
 

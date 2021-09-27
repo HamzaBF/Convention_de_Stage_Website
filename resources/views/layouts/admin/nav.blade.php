@@ -1,54 +1,78 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div class="profile-image">
+                    <img class="img-xs rounded-circle" src="{{ asset('assets/images/faces/face.jpg') }}" alt="profile image">
+                    <div class="dot-indicator bg-success"></div>
+                </div>
+                <div class="text-wrapper">
+                    <p class="profile-name"> {{ Auth::user()->name }} </p>
+                    {{-- <p class="designation">Premium user</p> --}}
+                </div>
+            </a>
+        </li>
+        <li class="nav-item nav-category">Main Menu</li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('RH') }}">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+                                {{-- users --}}
 
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#user-links" aria-expanded="false"
+                aria-controls="user-links">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">Users</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="user-links">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('stagaires') }}">Stagiaires</a>
                     </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('encadrants') }}">Encadrants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('RHs') }}">RH</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.create') }}">Add New User</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+                                       {{-- conventions --}}
+                                
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#user-links" aria-expanded="false"
+                aria-controls="user-links">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title">Convention de stage</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="user-links">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('convention.index')}}">Nos Conventions</a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="">Add New Convention</a>
+                    </li> --}}
+                </ul>
+            </div>
+        </li>
+        
+        {{-- <li class="nav-item">
+            <a class="nav-link" href="pages/icons/font-awesome.html">
+                <i class="menu-icon typcn typcn-user-outline"></i>
+                <span class="menu-title">Settings</span>
+            </a>
+        </li> --}}
+    </ul>
 </nav>
