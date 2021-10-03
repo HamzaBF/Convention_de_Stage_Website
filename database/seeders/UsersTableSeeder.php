@@ -19,8 +19,8 @@ class UsersTableSeeder extends Seeder
             // Admin
             DB::table('users')->truncate(); //for cleaning earlier data to avoid duplicate entries
             DB::table('users')->insert([
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
+                'name' => 'super Admin',
+                'email' => 'h.aboufatama@mascir.ma',
                 'role' => 'admin',
                 'password' => Hash::make('password'),
             ]);

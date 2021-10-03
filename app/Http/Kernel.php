@@ -64,5 +64,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \App\Http\Middleware\Role::class,
         'isAdminOrRH' => \App\Http\Middleware\AdminMiddleware::class,
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
+
+
     ];
 }
