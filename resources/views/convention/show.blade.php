@@ -19,19 +19,19 @@
               </div>
               <!-- Date -->
               <div class="form-group">
-                <label for="dateinput">Date de Naissance</label>
+                <label for="dateinput">Date de naissance</label>
                 <input name="Date_Naissance" type="date" class="form-control" id="dateinput" readonly placeholder="Date de Naissance" value="{{ $convention->Date }}">
               </div>
 
               <!-- Date -->
               <div class="form-group">
-                <label for="cin">CIN</label>
+                <label for="cin">Numéro de la carte CIN</label>
                 <input name="cin" type="text" class="form-control" id="cin" readonly value="{{ $convention->CIN }}">
               </div>
               
   
               <div class="form-group">
-                <label for="LieuDeNaissance">Lieu de Naissance</label>
+                <label for="LieuDeNaissance">Lieu de naissance</label>
                 <input name="Lieu_Naissance" type="text" class="form-control" id="LieuDeNaissance" readonly placeholder="Lieu de Naissance" value="{{ $convention->Lieu_De_Naissance }}">
               </div>
     
@@ -41,7 +41,7 @@
               </div>
     
               <div class="form-group">
-                <label for="Etablissement">L'Etablissement de formation initiale</label>
+                <label for="Etablissement">Etablissement de la formation initiale</label>
                 <input type="text" name="Etablissement" class="form-control" id="Etablissement" readonly placeholder="L'Etablissement de formation initiale" value="{{ $convention->Etablissement }}">
               </div>
     
@@ -61,9 +61,17 @@
               </div> 
 
               <div class="form-group">
-                <label for="departement">Département</label>
+                <label for="departement">Département/Centre</label>
                 <input type="text" name="Departement" class="form-control" id="departement" readonly  value="{{ $convention->departement }}">
               </div> 
+
+                  <!-- Rémuniration -->
+              <div class="form-group">
+                <label for="remunire">Est-ce que le stage est rémunéré ?</label>
+                <input type="text" name="Remunire" class="form-control" id="remunire" readonly value="{{ $convention->Remunire}}">
+              </div>
+
+
 
   
             </form>

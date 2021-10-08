@@ -15,24 +15,24 @@
             @method('PATCH') 
           @csrf
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Nom et prénom</label>
             <input name="Name" type="text" class="form-control" id="name" readonly value="{{ $convention->Name }}">
           </div>
           <!-- Date -->
           <div class="form-group">
-            <label for="dateinput">Date de Naissance</label>
+            <label for="dateinput">Date de naissance</label>
             <input name="Date_Naissance" type="date" class="form-control" id="dateinput" placeholder="Date de Naissance" readonly value="{{ $convention->Date }}">
           </div>
 
           <!-- Date -->
           <div class="form-group">
-            <label for="cin">Date de Naissance</label>
+            <label for="cin">Date de naissance</label>
             <input name="cin" type="text" class="form-control" id="cin"  readonly value="{{ $convention->CIN }}">
           </div>
           
 
           <div class="form-group">
-            <label for="LieuDeNaissance">Lieu de Naissance</label>
+            <label for="LieuDeNaissance">Lieu de naissance</label>
             <input name="Lieu_Naissance" type="text" class="form-control" id="LieuDeNaissance" placeholder="Lieu de Naissance" readonly value="{{ $convention->Lieu_De_Naissance }}">
           </div>
 
@@ -42,7 +42,7 @@
           </div>
 
           <div class="form-group">
-            <label for="Etablissement">L'Etablissement de formation initiale</label>
+            <label for="Etablissement">L'Etablissement de la formation initiale</label>
             <input type="text" name="Etablissement" class="form-control" id="Etablissement" placeholder="L'Etablissement de formation initiale" readonly value="{{ $convention->Etablissement }}" >
           </div>
 
@@ -57,38 +57,49 @@
           </div>
 
           <div class="form-group">
-            <label for="tuteur">Tuteur à MAScir</label>
+            <label for="tuteur">Tuteur à MAScIR</label>
             <input type="text" name="tuteur" class="form-control" id="tuteur" readonly value="{{ $convention->Tuteur }}">
+          </div>
+          <!-- Tuteur -->
+          <div class="form-group">
+            <label for="tuteur">Tuteur à MAScIR</label>
+            {{-- <input type="text" class="form-control" id="tuteur" placeholder="Tuteur à MAScir "> --}}
+            <select class="chosen-select form-control" data-placeholder="Select Tuteur" id="tuteur" name="tuteur" tabindex="2" required >
+              <option value="{{ $convention->Tuteur }}">{{ $convention->Tuteur }}</option>
+              @foreach($tuteurs as $tuteur)
+                  <option value="{{ $tuteur->Name }}">{{ $tuteur->Name }}</option>
+              @endforeach
+          </select>
           </div>
 
           <div class="form-group">
-            <label for="departement">Département</label>
+            <label for="departement">Département/Centre</label>
             <input type="text" name="Departement" class="form-control" id="departement" readonly value="{{ $convention->departement }}">
           </div>
 
           <div class="form-group">
-            <label for="sujet">Sujet de Stage</label>
+            <label for="sujet">Sujet de stage</label>
             <input type="text" name="sujet" class="form-control" id="sujet" placeholder="Sujet de stage" value="{{ $convention->Sujet}}">
           </div>
 
           {{-- Numéro du demande de recrutement --}}
           <div class="form-group">
-            <label for="dr">Numéro du demande de recrutement</label>
+            <label for="dr">Numéro de la demande de recrutement</label>
             <input type="text" name="DR" class="form-control" id="dr" placeholder="Numéro du demande de recrutement" value="{{ $convention->DR}}">
           </div>
 
           <div class="form-group">
-            <label for="datedebut">Date début de stage</label>
+            <label for="datedebut">Date de début de stage</label>
             <input name="Date_Debut" type="date" class="form-control" id="datedebut" placeholder="Date début de stage" value="{{ $convention->date_debut }}">
           </div>
 
           <div class="form-group">
-            <label for="datefin">Date fin de stage</label>
+            <label for="datefin">Date de fin de stage</label>
             <input name="Date_Fin" type="date" class="form-control" id="datefin" placeholder="Date de fin de stage" value="{{ $convention->date_fin }}">
           </div>
 
           
-          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button type="submit" class="btn btn-primary me-2">Envoyer</button>
 
         </form>
       </div>

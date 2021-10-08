@@ -22,7 +22,7 @@
                         <img class="img-md rounded-circle" src="{{ asset('assets/images/faces/face.jpg') }}" alt="Profile image">
                         <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }} </p>
                     </div>
-                    <a class="dropdown-item" href="{{ route('profile.edit',auth()->id())}}" >My Profile </a>
+                    <a class="dropdown-item" href="{{ route('profile.edit',auth()->id())}}" >Mon profile </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

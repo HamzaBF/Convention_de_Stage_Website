@@ -109,6 +109,7 @@ class RegisterController extends Controller
             return $user;
          }
         
+        $user->name = $encadrant->Name;
         $user->role = 'encadrant';
         $user->save();
         return $user;

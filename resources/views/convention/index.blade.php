@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-lg-12 margin-tb">
       <div class="text-center mb-4">
-          <h4 >La liste de vos conventions de stage</h4>
+          <h4 >La liste de mes conventions de stage</h4>
       </div>
   </div>
 </div>
@@ -18,10 +18,10 @@
 <table class="table table-bordered">
   <tr>
     <td>No</td>
-    <td>Nom et Prénom</td>
+    <td>Nom et prénom</td>
     <td>Etablissement</td>
     <td>Formation</td>
-    <td>Département</td>
+    <td>Département/Centre</td>
     <td>Encadrant</td>
     <td colspan="2">Actions</td>
   </tr>
@@ -35,7 +35,7 @@
           <td>{{$convention->Tuteur}}</td>
 
           <td>
-               <a href="{{ route('conventions.show',$convention->id)}}" class="btn btn-info border-bottom-0">Show</a>
+               <a href="{{ route('conventions.show',$convention->id)}}" class="btn btn-info border-bottom-0">Visualiser</a>
           </td>
       </tr>
   @endforeach

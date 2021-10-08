@@ -14,7 +14,7 @@
         </li>
         <li class="nav-item nav-category">Main Menu</li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('stagiaire') }}">
+            <a class="nav-link" href="{{ route('encadrant') }}">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title">Dashboard</span>
             </a>

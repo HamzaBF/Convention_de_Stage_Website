@@ -17,6 +17,7 @@ class CreateConventionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('Name')->nullable();
+            $table->string('gender')->nullable();
             $table->date('Date')->nullable();
             $table->string('Lieu_De_Naissance')->nullable();
             $table->string('adress')->nullable();
@@ -27,10 +28,12 @@ class CreateConventionsTable extends Migration
             $table->string('Tuteur');
             $table->string('departement');
             $table->string('Remunire');
+            $table->string('ribcheque')->nullable();
+            $table->string('ribnumero')->nullable();
             $table->string('RIB')->nullable();
             $table->integer('Indemnite')->nullable();
             $table->string('Sujet')->nullable();
-            $table->string('DR')->nullable();
+            $table->string('DR')->nullable(); // Numéro de la demande de recrutement
             $table->string('date_debut')->nullable();
             $table->string('date_fin')->nullable();
             $table->timestamps();

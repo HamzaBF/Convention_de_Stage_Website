@@ -11,16 +11,19 @@ use App\Models\User;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $pdf;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data,$pdf)
     {
         //
         $this->data = $data;
+        $this->pdf = $pdf;
 
     }
 
@@ -32,6 +35,23 @@ class SendMail extends Mailable
     public function build()
     {
         $user = User::find(Auth()->id());
-        return $this->from($user->email)->subject("Demande de compléter ma convention de stage")->view('email.emailView')->with('data', $this->data);
+        
+        if($user->role == 'stagiaire')
+        {
+            return $this->from('eval2020@mascir.ma')->subject("Convention de stage à compléter")->view('email.emailView')->with('data', $this->data);
+        }
+
+        if($user->role == 'encadrant')
+        {
+            return $this->from('eval2020@mascir.ma')->subject("Convention de stage encadrant -> RH")->view('email.enctorh')->with('data', $this->data);
+        }
+
+        if($user->role == 'RH')
+        {
+            return $this->from('eval2020@mascir.ma')->subject("Signature de votre convention de stage")->view('email.rhtostag')->attachData($this->pdf->output(), 'Convention_de_stage.pdf')->with('data', $this->data);
+        }
+
+        
+        
     }
 }

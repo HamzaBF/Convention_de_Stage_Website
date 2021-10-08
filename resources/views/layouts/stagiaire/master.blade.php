@@ -50,18 +50,41 @@
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js" type="text/javascript"></script>
     
     <script>
+        
         $("#remunire").change(function() {
-        if ($(this).val() == "yes") {
-            $('#ribdiv').show();
-            $('#rib').attr('required', '');
-            $('#rib').attr('data-error', 'This field is required.');
+        if ($(this).val() == "Oui") {
+            $('#ribchequediv').show();
+            $('#ribchequediv').attr('required', '');
+            $('#ribchequediv').attr('data-error', 'This field is required.');
         } else {
-            $('#ribdiv').hide();
-            $('#rib').removeAttr('required');
-            $('#rib').removeAttr('data-error');
+            $('#ribchequediv').hide();
+            $('#ribchequediv').removeAttr('required');
+            $('#ribchequediv').removeAttr('data-error');
         }  
         });
         $("#remunire").trigger("change");
+
+        $("#ribcheque").change(function() {
+        if ($(this).val() == "RIB") {
+            $('#ribdiv').show();
+            $('#Rib').attr('required', '');
+            $('#Rib').attr('data-error', 'This field is required.');
+
+            $('#ribnumdiv').show();
+            $('#Ribnum').attr('required', '');
+            $('#Ribnum').attr('data-error', 'This field is required.');
+        } else {
+            $('#ribdiv').hide();
+            $('#Rib').removeAttr('required');
+            $('#Rib').removeAttr('data-error');
+
+            $('#ribnumdiv').hide();
+            $('#Ribnum').removeAttr('required');
+            $('#Ribnum').removeAttr('data-error');
+        }  
+        });
+        $("#ribcheque").trigger("change");
+        
     </script>
     
     @yield('scripts')

@@ -12,25 +12,19 @@
                 </div>
             </a>
         </li>
-        <li class="nav-item nav-category">Main Menu</li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('stagiaire') }}">
-                <i class="menu-icon typcn typcn-document-text"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
+        <li class="nav-item nav-category">Menu principal</li>
         
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#user-links" aria-expanded="false"
                 aria-controls="user-links">
                 <i class="menu-icon typcn typcn-coffee"></i>
-                <span class="menu-title">Convention de stage</span>
+                <span class="menu-title">Conventions de stage</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="user-links">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('conventions.index')}}">Nos Conventions</a>
+                        <a class="nav-link" href="{{ route('conventions.index')}}">Mes conventions</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="">Add New Convention</a>

@@ -34,10 +34,10 @@
           <td>{{$convention->departement}}</td>
           <td>{{$convention->Tuteur}}</td>
           <td>
-              <a href="{{ route('convention.edit',$convention->id)}}" class="btn btn-primary border-bottom-0">Ajouter</a>
+              <a href="{{ route('convention.edit',$convention->id)}}" class="btn btn-primary border-bottom-0">Ajouter des informations</a>
           </td>
           <td>
-               <a href="{{ route('convention.show',$convention->id)}}" class="btn btn-info border-bottom-0">Show</a>
+               <a href="{{ route('sendemail',$convention->id)}}" class="btn btn-info border-bottom-0">Envoyer au stagaiare</a>
           </td>
           <td>
               <a class="btn btn-success border-bottom-0" href="{{ route('print',$convention->id)}}">Imprimer</a>                  

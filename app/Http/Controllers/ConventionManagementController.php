@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Mail\ConventionMail;
 use App\Models\User;
 use App\Models\Convention;
+use App\Models\Employees;
 // use Barryvdh\DomPDF\Facade as PDF;
 use PDF;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+
+
 
 
 class ConventionManagementController extends Controller
@@ -22,19 +29,59 @@ class ConventionManagementController extends Controller
 
      // display the holl convention in format html
 
-     public function show($id)
+     public function SendEmail($id)
     {
         $convention = Convention::find($id);
+        $user = User::where('name',$convention->Name)->first();
+        $tuteur = Employees::where('Name',$convention->Tuteur)->first();
 
-        if( $convention->Remunire == 'yes' )
-        {
-            return view('pdf.pdf', compact('convention'));
-        }
+        if( !is_null($convention->Indemnite))
+            {
+                //share data to view
+            if( $convention->Remunire == 'Oui')
+            {
+                    // view()->share('convention', $convention);
+                $pdf = PDF::loadView('pdf', compact('convention'));
+                $pdf->setOption('page-size', 'A4');
 
-        else
-        {
-            return view('pdf_non', compact('convention'));
-        }
+                $data = array(
+                    'name'      =>  $convention->Name,
+                    'gender'    =>  $convention->gender,
+                    'message'   =>  "Nous vous remercions de trouver en pièce jointe votre convention de stage à signer ; et à faire signer par votre établissement en 3 exemplaires originaux.
+                    Merci de la renvoyer par émail à l'adresse : r.elidrissi@mascir.ma, ou de déposer les 3 copies auprès du département des Ressources Humaines."
+                );
+        
+                Mail::to($user->email)->cc([$tuteur->email])->send(new SendMail($data,$pdf));
+
+                return redirect('/convention')->with('success', "La convention de stagiaire est envoyée au stagiaire !");
+
+            }
+
+            elseif( $convention->Remunire == 'Non' )
+            {
+                        // view()->share('convention', $convention);
+                $pdf = PDF::loadView('pdf_non', compact('convention'));
+                $pdf->setOption('page-size', 'A4');
+
+                $data = array(
+                    'name'      =>  $convention->Name,
+                    'gender'    =>  $convention->gender,
+                    'message'   =>  "Nous vous remercions de trouver en pièce jointe votre convention de stage à signer ; et à faire signer par votre établissement en 3 exemplaires originaux.
+                    Merci de la renvoyer par émail à l'adresse : r.elidrissi@mascir.ma, ou de déposer les 3 copies auprès du département des Ressources Humaines."
+                );
+        
+                Mail::to($user->email)->cc([$tuteur->email])->send(new SendMail($data,$pdf));
+                
+                return redirect('/convention')->with('success', "La convention de stagiaire est envoyée au stagiaire !");
+        
+
+            }
+
+            }
+        else 
+            {
+                return redirect('/convention')->with('success', "Merci de remplir tous les champs avant d'imprimer la convention de stage !");
+            }
         
     }
 
@@ -43,7 +90,7 @@ class ConventionManagementController extends Controller
      public function edit($id)
     {
         $convention = Convention::find($id);
-        return view('RH.conventions.edit', compact('convention'));        
+        return view('RH.conventions.edit', compact('convention'));   
     }
 
     // update function
@@ -54,15 +101,23 @@ class ConventionManagementController extends Controller
                 'Name'=>'required'
             ]);
 
+
+            $convention = Convention::find($id);
+            $user = User::where('name',$convention->Name)->first();
+            $tuteur = Employees::where('Name',$convention->Tuteur)->first();
+
             $convention = Convention::find($id);
             $convention->Indemnite =  $request->get('Indemnite');
             $convention->Sujet =  $request->get('sujet');
             $convention->date_debut = $request->get('Date_Debut');
             $convention->date_fin = $request->get('Date_Fin');
-            $convention->DR = $request->get('DR');
+            $convention->DR = $request->get('demanderecrut');
             $convention->save();
 
-            return redirect('/convention')->with('success', 'La convention de stage est mise à jour !');
+            
+
+
+            return redirect('/convention')->with('success', 'La convention de stage est mise à jour et envoyé au stagiaire!');
         }
 
     // print pdf file
@@ -70,28 +125,40 @@ class ConventionManagementController extends Controller
     public function downloadPDF($id){
         //retrieve all records from db
         $convention = Convention::find($id);
+        $user = User::find(Auth()->id());
 
-        //share data to view
-        if( $convention->Remunire == 'yes')
-        {
-                // view()->share('convention', $convention);
-            $pdf = PDF::loadView('pdf', compact('convention'));
-            $pdf->setOption('page-size', 'A4');
-            
-
-
-            return $pdf->download('Convention_de_stage__'.$convention->Name.'.pdf');
-        }
-        elseif( $convention->Remunire == 'no' )
-        {
+        // RH download pdf
+        
+        if( !is_null($convention->Indemnite))
+            {
+                //share data to view
+            if( $convention->Remunire == 'Oui')
+            {
                     // view()->share('convention', $convention);
-            $pdf = PDF::loadView('pdf_non', compact('convention'));
-            $pdf->setOption('page-size', 'A4');
-    
+                $pdf = PDF::loadView('pdf', compact('convention'));
+                $pdf->setOption('page-size', 'A4');
 
-            return $pdf->download('Convention_de_stage__'.$convention->Name.'.pdf');
+                return $pdf->download('Convention_de_stage__'.$convention->Name.'.pdf');
 
-        }
+            }
+
+            elseif( $convention->Remunire == 'Non' )
+            {
+                        // view()->share('convention', $convention);
+                $pdf = PDF::loadView('pdf_non', compact('convention'));
+                $pdf->setOption('page-size', 'A4');
+        
+                return $pdf->download('Convention_de_stage__'.$convention->Name.'.pdf');
+
+            }
+
+            }
+        else 
+            {
+                return redirect('/convention')->with('success', "Merci de remplir tous les champs avant d'imprimer la convention de stage !");
+            }
+            
+            
         
 
         //download PDF file with download method

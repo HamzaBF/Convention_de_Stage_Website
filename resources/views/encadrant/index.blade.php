@@ -10,7 +10,7 @@
             <tr>
               <td>ID</td>
               <td>Nom et Prénom</td>
-              <td>Lieu De Naissance</td>
+              <td>Lieu de naissance</td>
               <td>Etablissement</td>
 
               <td colspan = 2>Actions</td>

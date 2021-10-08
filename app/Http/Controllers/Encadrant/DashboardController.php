@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Convention;
 use App\Models\User;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Employees;
 
 class DashboardController extends Controller
 {
@@ -28,8 +31,9 @@ class DashboardController extends Controller
 
           public function edit($id)
           {
-              $convention = Convention::find($id);
-              return view('encadrant.edit', compact('convention'));        
+            $tuteurs = Employees::all();
+            $convention = Convention::find($id);
+            return view('encadrant.edit', compact('convention','tuteurs'));        
           }
       
           // update function
@@ -47,7 +51,15 @@ class DashboardController extends Controller
                   $convention->date_fin = $request->get('Date_Fin');
                   $convention->DR = $request->get('DR');
                   $convention->save();
+
+                  $data = array(
+                        'name'      =>  $request->input('Name'),
+                        'tuteur'    =>  $convention->Tuteur,
+                        'message'   =>   "une nouvelle convention a été complétée par "
+                    );
+
+                  Mail::to('a.fathi@mascir.ma')->send(new SendMail($data));
       
-                  return redirect('/encadrant')->with('success', 'Convention Updated');
+                  return redirect('/encadrant')->with('success', 'La convention de stage est envoyée au département ressources humaine.');
               }
 }

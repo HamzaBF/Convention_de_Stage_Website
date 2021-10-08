@@ -12,13 +12,30 @@
         </p> --}}
         <form class="forms-sample" method="POST" action="{{ route('conventions.store') }}" enctype="multipart/form-data">
           @csrf
+          <!-- Name -->
           <div class="form-group">
             <label for="name">Nom et Prénom</label>
             <input name="Name" type="text" class="form-control" id="name" readonly value="{{ $user->name }}">
           </div>
+          <!-- Gender -->
+          <div class="form-group"> 
+            <div class="input-group "> 
+                <div class="form-radio col-sm"> 
+                    <label class="form-check-label"> 
+                        <input type="radio" autofocus class="form-control" name="gender" value="Femme" checked> Femme 
+                    </label> 
+                </div> 
+                <div class="form-radio col-sm"> 
+                    <label class="form-check-label"> 
+                        <input type="radio" autofocus class="form-control" name="gender" value="Homme"> Homme 
+                    </label> 
+                </div>  
+            </div> 
+        </div>
+
           <!-- Date De Naissance -->
           <div class="form-group">
-            <label for="dateinput">Date de Naissance</label>
+            <label for="dateinput">Date de naissance</label>
             <input name="Date_Naissance" type="date" class="form-control" id="dateinput" placeholder="Date de Naissance">
           </div>
 
@@ -30,7 +47,7 @@
           
           <!-- Lieu de Naissance -->
           <div class="form-group">
-            <label for="LieuDeNaissance">Lieu de Naissance</label>
+            <label for="LieuDeNaissance">Lieu de naissance</label>
             <input name="Lieu_Naissance" type="text" class="form-control" id="LieuDeNaissance" placeholder="Lieu de Naissance">
           </div>
 
@@ -42,7 +59,7 @@
 
           <!-- Etablissemant -->
           <div class="form-group">
-            <label for="Etablissement">L'Etablissement de formation initiale</label>
+            <label for="Etablissement">Etablissement de formation initiale</label>
             <input type="text" name="Etablissement" class="form-control" id="Etablissement" placeholder="L'Etablissement de formation initiale">
           </div>
 
@@ -86,7 +103,7 @@
 
           <!-- Tuteur -->
           <div class="form-group">
-            <label for="tuteur">Tuteur à MAScir</label>
+            <label for="tuteur">Tuteur à MAScIR</label>
             {{-- <input type="text" class="form-control" id="tuteur" placeholder="Tuteur à MAScir "> --}}
             <select class="chosen-select form-control" data-placeholder="Select Tuteur" id="tuteur" name="tuteur" tabindex="2" required>
               <option></option>
@@ -100,21 +117,38 @@
           <div class="form-group">
             <label for="remunire">Est-ce que le stage est rémunéré ?</label>
             <select class="chosen-select form-control" placeholder="Est-ce que le stage est rémunéré ?" id="remunire" name="Remunire" tabindex="2" required>
-                  <option></option>
-                  <option value="no"> non rémunéré </option>
-                  <option value="yes"> rémunéré </option>
+              <option value=""> </option>
+                  <option value="Non"> non rémunéré </option>
+                  <option value="Oui"> rémunéré </option>
           </select>
           </div>
 
-          <!-- RIB -->
+          <!-- RIB ou chèque -->
+          <div class="form-group" id="ribchequediv">
+            <label for="ribcheque">Est-ce que vous avez un rib où chèque ?</label>
+            <select class="chosen-select form-control" placeholder="RIB où chèque ?" id="ribcheque" name="Ribcheque" tabindex="2">
+                <option > </option>
+                <option value="chèque"> Chèque </option>    
+                <option value="RIB"> RIB </option>
+                  
+          </select>
+          </div>
+
+          <!-- RIB Numero -->
+          <div class="form-group" id="ribnumdiv">
+            <label for="Ribnum">Saisir votre rib</label>
+            <input type="text" name="ribnum" class="form-control" id="Ribnum" placeholder="Saisir votre RIB">
+          </div>
+
+          <!-- RIB File -->
           <div class="form-group" id="ribdiv">
-            <label for="Rib">RIB</label>
-            <input type="file" name="rib" class="form-control" id="Rib" placeholder="Uploader votre RIB">
+            <label for="Rib">Importer votre rib</label>
+            <input type="file" name="rib" class="form-control" id="Rib" placeholder="Importer votre RIB">
           </div>
           
           
           
-          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button type="submit" class="btn btn-primary me-2">Envoyer</button>
 
         </form>
       </div>

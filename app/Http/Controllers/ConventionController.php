@@ -8,6 +8,7 @@ use App\Models\Convention;
 use App\Models\Employees;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use PDF;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -62,7 +63,7 @@ class ConventionController extends Controller
         //     return redirect()->route('conventions.index'); 
         //  }
 
-         if($remunire=='yes'){
+         if($remunire=='Oui'){
 
             //Storage::delete('/public/avatars/'.$user->avatar);
 
@@ -80,6 +81,7 @@ class ConventionController extends Controller
             $convention = new Convention();
             $convention->user_id = Auth()->id();
             $convention->Name = $request->input('Name');
+            $convention->gender = $request->input('gender');
             $convention->Date = $request->input('Date_Naissance');
             $convention->Lieu_De_Naissance = $request->input('Lieu_Naissance');
             $convention->adress = $request->input('Adress');
@@ -90,6 +92,8 @@ class ConventionController extends Controller
             $convention->CIN = $request->input('cin');
             $convention->Tuteur = $request->input('tuteur');
             $convention->Remunire = $request->input('Remunire');
+            $convention->ribcheque = $request->input('Ribcheque');
+            $convention->ribnumero = $request->input('ribnum');
 
             $convention->RIB = $fileNameToStore;
 
@@ -97,10 +101,11 @@ class ConventionController extends Controller
 
             $data = array(
                 'name'      =>  $request->input('Name'),
-                'message'   =>   "Merci de compléter ma convention de stage.Et Merci."
+                'gender'    =>  $request->input('gender'),
+                'message'   =>   "Je vous prie de bien vouloir compléter ma convention de stage."
             );
 
-            Mail::to($tuteur->email)->send(new SendMail($data));
+            Mail::to($tuteur->email)->cc([$user->email])->send(new SendMail($data));
 
             
 
@@ -116,6 +121,7 @@ class ConventionController extends Controller
             $convention = new Convention();
             $convention->user_id = Auth()->id();
             $convention->Name = $request->input('Name');
+            $convention->gender = $request->input('gender');
             $convention->Date = $request->input('Date_Naissance');
             $convention->Lieu_De_Naissance = $request->input('Lieu_Naissance');
             $convention->adress = $request->input('Adress');
@@ -126,15 +132,17 @@ class ConventionController extends Controller
             $convention->CIN = $request->input('cin');
             $convention->Tuteur = $request->input('tuteur');
             $convention->Remunire = $request->input('Remunire');
+            
 
             $convention->save();
 
             $data = array(
                 'name'      =>  $request->input('Name'),
-                'message'   =>   "Merci de compléter ma convention de stage.Et Merci."
+                'gender'    =>  $request->input('gender'),
+                'message'   =>   "Je vous prie de bien vouloir compléter ma convention de stage."
             );
 
-            Mail::to($tuteur->email)->send(new SendMail($data));
+            Mail::to($tuteur->email)->cc([$user->email])->send(new SendMail($data));
 
             
 
@@ -195,4 +203,6 @@ class ConventionController extends Controller
     {
         //
     }
+
+
 }

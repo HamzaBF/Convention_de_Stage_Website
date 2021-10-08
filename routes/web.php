@@ -42,6 +42,7 @@ Route::middleware(['auth','verified','role:stagiaire'])->group(function() {
         ]
     ]);
 
+
 });
 
 // Import encadrants route
@@ -61,6 +62,8 @@ Route::middleware ('auth', 'verified')->group (function () {
 
 
 
+
+
 Route::view('test','pdf');
 
 
@@ -76,11 +79,12 @@ Route::middleware(['auth','verified'])->group(function () {
       
       Route::resource('/convention', App\Http\Controllers\ConventionManagementController::class, [
         'only' => [
-            'index','show','edit','update'
+            'index','edit','update'
         ]
         ]);
       Route::get('/downloadPDF/{id}', [App\Http\Controllers\ConventionManagementController::class, 'downloadPDF'])->name('print');
       Route::get('RIBs/{id}/download', [App\Http\Controllers\ConventionManagementController::class, 'download'])->name('rib.download');
+      Route::get('/SendEmail/{id}', [App\Http\Controllers\ConventionManagementController::class, 'SendEmail'])->name('sendemail');
 
 
 
