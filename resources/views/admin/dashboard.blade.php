@@ -1,4 +1,4 @@
-@extends('layouts.RH.master')
+@extends('layouts.admin.master')
 
 @section('title')
     Dashboard | Admin Panel

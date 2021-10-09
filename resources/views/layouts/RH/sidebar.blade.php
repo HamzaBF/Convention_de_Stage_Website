@@ -12,14 +12,8 @@
                 </div>
             </a>
         </li>
-        <li class="nav-item nav-category">Main Menu</li>
-        <li class="nav-item">
-            <a class="nav-link" href="">
-                <i class="menu-icon typcn typcn-document-text"></i>
-                <span class="menu-title">Dashboard</span>
-            </a>
-        </li>
-
+        <li class="nav-item nav-category">Menu principal</li>
+        
                                 {{-- users --}}
 
         <li class="nav-item">
@@ -31,9 +25,6 @@
             </a>
             <div class="collapse" id="user-links">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('stagaires') }}">Stagiaires</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('encadrants') }}">Encadrants</a>
                     </li>
@@ -59,7 +50,7 @@
             <div class="collapse" id="user-links">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('convention.index')}}">Nos Conventions</a>
+                        <a class="nav-link" href="{{ route('convention.index')}}">Nos conventions</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="">Add New Convention</a>

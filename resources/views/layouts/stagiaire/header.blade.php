@@ -14,7 +14,7 @@
             <li class="nav-item dropdown">
                
             <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
-                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" id="UserDropdown" href="" data-toggle="dropdown"
                     aria-expanded="false">
                     <img class="img-xs rounded-circle" src="{{ asset('assets/images/faces/face.jpg') }}" alt="Profile image"> </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">

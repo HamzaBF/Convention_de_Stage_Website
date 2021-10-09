@@ -6,7 +6,7 @@
         <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
             <div class="row w-100">
                 <div class="col-lg-4 mx-auto">
-                    <h2 class="text-center mb-4">{{ __('Register') }}</h2>
+                    <h2 class="text-center mb-4">{{ __("S'inscrire") }}</h2>
                     <div class="auto-form-wrapper">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -15,7 +15,7 @@
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required autocomplete="name" autofocus
-                                        placeholder="Name">
+                                        placeholder="Nom et prénom">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-check-circle-outline"></i>
@@ -80,7 +80,7 @@
                             <div class="form-group d-flex justify-content-center">
                                 <div class="form-check form-check-flat mt-0">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" checked> I agree to the terms
+                                        <input type="checkbox" class="form-check-input" checked> J'accepte les conditions
                                     </label>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
 
                              @if ($errors->has('g-recaptcha-response'))
                                 <span class="help-block d-flex justify-content-center">
-                                    <strong> Please verify that you are not a robot ! </strong>
+                                    <strong> Veuillez vérifier que vous n'êtes pas un robot ! </strong>
                                 </span>
                              @endif
 
@@ -104,7 +104,7 @@
                                 </button>
                             </div>
                             <div class="text-block text-center my-3">
-                                <span class="text-small font-weight-semibold">Already have and account ?</span>
+                                <span class="text-small font-weight-semibold">Vous avez déjà un compte ?</span>
                                 <a href="{{ route('login') }}" class="text-black text-small">{{ __('Login') }}</a>
                             </div>
                         </form>

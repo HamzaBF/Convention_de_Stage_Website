@@ -1,4 +1,4 @@
-@extends('RH.dashboard')
+@extends('admin.dashboard')
 
 
 @section('users')

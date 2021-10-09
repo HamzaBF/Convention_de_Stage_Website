@@ -1,4 +1,4 @@
-@extends('users.index')
+@extends('users.actions.admin.index')
 
 @section('categorie')
 

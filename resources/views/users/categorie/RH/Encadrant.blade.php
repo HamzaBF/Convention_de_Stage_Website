@@ -1,4 +1,4 @@
-@extends('users.index')
+@extends('users.actions.RH.index')
 
 @section('categorie')
 
@@ -22,7 +22,7 @@
         <td>Nom et Prénom</td>
         <td>Email</td>
         <td>Titre de Poste</td>
-        <td colspan="2">Actions</td>
+        {{-- <td colspan="2">Actions</td> --}}
       </tr>
       @foreach($users as $user)
                   
@@ -34,7 +34,7 @@
                           <td scope="row" class="scope">{{$user->name}}</td>
                           <td>{{$user->email}}</td>
                           <td>{{$user->role}}</td>
-                          <td>
+                          {{-- <td>
                               <a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary border-bottom-0">Edit</a>
                           </td>
                           <td>
@@ -43,7 +43,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Delete</button>
                               </form>
-                          </td>
+                          </td> --}}
                       </tr>
                       @endif
         @endforeach

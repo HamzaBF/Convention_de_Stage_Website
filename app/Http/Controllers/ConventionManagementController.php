@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\ConventionMail;
+use App\Mail\sendemailpdf;
 use App\Models\User;
 use App\Models\Convention;
 use App\Models\Employees;
@@ -51,7 +52,7 @@ class ConventionManagementController extends Controller
                     Merci de la renvoyer par émail à l'adresse : r.elidrissi@mascir.ma, ou de déposer les 3 copies auprès du département des Ressources Humaines."
                 );
         
-                Mail::to($user->email)->cc([$tuteur->email])->send(new SendMail($data,$pdf));
+                Mail::to($user->email)->cc([$tuteur->email])->send(new sendemailpdf($data,$pdf));
 
                 return redirect('/convention')->with('success', "La convention de stagiaire est envoyée au stagiaire !");
 
@@ -70,7 +71,7 @@ class ConventionManagementController extends Controller
                     Merci de la renvoyer par émail à l'adresse : r.elidrissi@mascir.ma, ou de déposer les 3 copies auprès du département des Ressources Humaines."
                 );
         
-                Mail::to($user->email)->cc([$tuteur->email])->send(new SendMail($data,$pdf));
+                Mail::to($user->email)->cc([$tuteur->email])->send(new sendemailpdf($data,$pdf));
                 
                 return redirect('/convention')->with('success', "La convention de stagiaire est envoyée au stagiaire !");
         
@@ -117,7 +118,7 @@ class ConventionManagementController extends Controller
             
 
 
-            return redirect('/convention')->with('success', 'La convention de stage est mise à jour et envoyé au stagiaire!');
+            return redirect('/convention')->with('success', 'La convention de stage est mise à jour!');
         }
 
     // print pdf file

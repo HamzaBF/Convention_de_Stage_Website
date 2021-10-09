@@ -55,7 +55,7 @@
 
                             @if ($errors->has('g-recaptcha-response'))
                                 <span class="help-block d-flex justify-content-center">
-                                    <strong> Please verify that you are not a robot ! </strong>
+                                    <strong> Veuillez vérifier que vous n'êtes pas un robot ! </strong>
                                 </span>
                              @endif
 
@@ -69,19 +69,19 @@
                                 <div class="form-check form-check-flat mt-0">
                                     <label class="form-check-label">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }}> Keep me signed in
+                                            {{ old('remember') ? 'checked' : '' }}> Gardez-moi connecté
                                     </label>
                                 </div>
                                 @if (Route::has('password.request'))
                                     <a class="text-small forgot-password text-black"
                                         href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Mot de passe oublié?') }}
                                     </a>
                                 @endif
                             </div>
                             <div class="text-block text-center my-3">
-                                <span class="text-small font-weight-semibold">Not a member ?</span>
-                                <a href="{{ route('register') }}" class="text-black text-small">Create new account</a>
+                                <span class="text-small font-weight-semibold">Pas un membre ?</span>
+                                <a href="{{ route('register') }}" class="text-black text-small">Créer un nouveau compte</a>
                             </div>
                         </form>
                     </div>

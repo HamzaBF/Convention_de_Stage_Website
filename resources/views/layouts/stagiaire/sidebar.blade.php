@@ -15,7 +15,7 @@
         <li class="nav-item nav-category">Menu principal</li>
         
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#user-links" aria-expanded="false"
+            <a class="nav-link" data-toggle="collapse" href="" aria-expanded="false"
                 aria-controls="user-links">
                 <i class="menu-icon typcn typcn-coffee"></i>
                 <span class="menu-title">Conventions de stage</span>

@@ -11,7 +11,7 @@ use App\Models\User;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $pdf;
+    
 
 
     /**
@@ -19,14 +19,14 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data,$pdf)
+    public function __construct($data)
     {
         //
         $this->data = $data;
-        $this->pdf = $pdf;
+        
 
     }
-
+    
     /**
      * Build the message.
      *
@@ -46,10 +46,6 @@ class SendMail extends Mailable
             return $this->from('eval2020@mascir.ma')->subject("Convention de stage encadrant -> RH")->view('email.enctorh')->with('data', $this->data);
         }
 
-        if($user->role == 'RH')
-        {
-            return $this->from('eval2020@mascir.ma')->subject("Signature de votre convention de stage")->view('email.rhtostag')->attachData($this->pdf->output(), 'Convention_de_stage.pdf')->with('data', $this->data);
-        }
 
         
         
